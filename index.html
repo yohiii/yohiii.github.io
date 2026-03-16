@@ -3,232 +3,348 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Name — Robotics Engineering</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <title>Yohana Bezuayene — Robotics Engineering</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     :root{
       --white:#ffffff;--off:#f8f7f5;--dark:#1a1a1a;--mid:#555;--light:#999;
-      --accent:#1a1a1a;--border:#e8e6e2;--tag-bg:#f0ede8;--tag-text:#444;
+      --border:#e8e6e2;--tag-bg:#f0ede8;--tag-text:#444;
       --ff:'DM Sans',sans-serif;--fm:'DM Mono',monospace
     }
+    html{scroll-behavior:smooth}
     body{font-family:var(--ff);color:var(--dark);background:var(--white);font-size:15px;line-height:1.6}
-    nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,0.95);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:52px}
-    .nav-name{font-size:14px;font-weight:500;letter-spacing:0.02em}
-    .nav-links{display:flex;gap:1.5rem}
-    .nav-links a{font-size:13px;color:var(--mid);text-decoration:none;transition:color 0.2s}
+
+    /* NAV */
+    nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,0.96);border-bottom:1px solid var(--border);padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;height:52px}
+    .nav-name{font-size:13px;font-weight:500;letter-spacing:0.03em}
+    .nav-links{display:flex;gap:1.75rem}
+    .nav-links a{font-size:12px;color:var(--mid);text-decoration:none;letter-spacing:0.03em;transition:color 0.2s}
     .nav-links a:hover{color:var(--dark)}
-    .hero{padding:5rem 2rem 4rem;max-width:860px;margin:0 auto}
-    .hero-label{font-family:var(--fm);font-size:12px;color:var(--light);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1.2rem}
-    .hero h1{font-size:clamp(2.2rem,5vw,3.2rem);font-weight:300;line-height:1.15;letter-spacing:-0.02em;margin-bottom:1.2rem}
-    .hero h1 span{font-weight:500}
-    .hero-sub{font-size:16px;color:var(--mid);max-width:520px;line-height:1.7;margin-bottom:2rem}
-    .hero-links{display:flex;gap:1rem;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;padding:8px 16px;border-radius:6px;text-decoration:none;transition:all 0.2s;cursor:pointer;border:none;font-family:var(--ff)}
-    .btn-dark{background:var(--dark);color:#fff}
-    .btn-dark:hover{background:#333}
-    .btn-outline{background:transparent;color:var(--dark);border:1px solid var(--border)}
-    .btn-outline:hover{background:var(--off)}
-    section{padding:3rem 2rem;max-width:860px;margin:0 auto}
-    .section-label{font-family:var(--fm);font-size:11px;color:var(--light);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.6rem}
-    .section-title{font-size:1.35rem;font-weight:500;margin-bottom:2rem;letter-spacing:-0.01em}
-    .divider{height:1px;background:var(--border);max-width:860px;margin:0 auto}
-    .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:0.75rem}
-    .skill-group{background:var(--off);border-radius:8px;padding:1rem}
-    .skill-group-label{font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--light);margin-bottom:0.5rem}
-    .skill-tags{display:flex;flex-wrap:wrap;gap:4px}
-    .tag{font-size:12px;background:var(--tag-bg);color:var(--tag-text);padding:3px 8px;border-radius:4px;font-family:var(--fm)}
-    .projects-list{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden}
-    .project-card{background:var(--white);padding:1.5rem;transition:background 0.15s}
-    .project-card:hover{background:var(--off)}
-    .project-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:0.6rem}
-    .project-title{font-size:15px;font-weight:500}
-    .project-status{font-family:var(--fm);font-size:11px;padding:3px 8px;border-radius:4px;white-space:nowrap}
-    .status-active{background:#e8f5e9;color:#2e7d32}
-    .status-sim{background:#e3f2fd;color:#1565c0}
-    .project-desc{font-size:13px;color:var(--mid);line-height:1.6;margin-bottom:0.75rem}
-    .project-tags{display:flex;flex-wrap:wrap;gap:4px}
-    .project-tag{font-size:11px;font-family:var(--fm);background:var(--tag-bg);color:var(--tag-text);padding:2px 7px;border-radius:4px}
-    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
-    .about-text{font-size:14px;color:var(--mid);line-height:1.8}
-    .about-facts{display:flex;flex-direction:column;gap:0.75rem}
-    .fact{display:flex;flex-direction:column}
-    .fact-label{font-size:11px;font-family:var(--fm);color:var(--light);text-transform:uppercase;letter-spacing:0.08em}
-    .fact-value{font-size:14px;color:var(--dark);font-weight:500}
-    .contact-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:0.75rem}
-    .contact-card{background:var(--off);border-radius:8px;padding:1rem;text-decoration:none;color:var(--dark);transition:background 0.15s;display:block}
-    .contact-card:hover{background:#ede9e2}
-    .contact-card-label{font-size:11px;font-family:var(--fm);color:var(--light);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.3rem}
-    .contact-card-value{font-size:13px;font-weight:500}
-    footer{padding:2rem;text-align:center;font-size:12px;color:var(--light);font-family:var(--fm);border-top:1px solid var(--border);max-width:860px;margin:0 auto}
-    @media(max-width:600px){.about-grid{grid-template-columns:1fr}.hero h1{font-size:2rem}}
+
+    /* HEADER */
+    .header{padding:5rem 2.5rem 4rem;max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:start}
+    .header-left{}
+    .header-label{font-family:var(--fm);font-size:11px;color:var(--light);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem}
+    .header h1{font-size:clamp(2rem,5vw,3rem);font-weight:300;line-height:1.12;letter-spacing:-0.025em;margin-bottom:1rem}
+    .header h1 strong{font-weight:500}
+    .header-school{font-size:13px;color:var(--mid);margin-bottom:0.3rem}
+    .header-major{font-family:var(--fm);font-size:12px;color:var(--light);margin-bottom:1.25rem}
+    .header-summary{font-size:15px;color:var(--mid);max-width:480px;line-height:1.75;margin-bottom:1.75rem}
+    .contact-pills{display:flex;flex-wrap:wrap;gap:8px}
+    .pill{font-size:12px;font-family:var(--fm);padding:5px 12px;border-radius:20px;text-decoration:none;border:1px solid var(--border);color:var(--mid);transition:all 0.2s;white-space:nowrap}
+    .pill:hover{border-color:#aaa;color:var(--dark)}
+    .pill-dark{background:var(--dark);color:#fff;border-color:var(--dark)}
+    .pill-dark:hover{background:#333;border-color:#333;color:#fff}
+    .header-right{padding-top:1rem}
+    .availability-badge{background:var(--off);border:1px solid var(--border);border-radius:10px;padding:1.25rem;min-width:180px}
+    .badge-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;display:inline-block;margin-right:6px}
+    .badge-status{font-size:12px;font-weight:500;margin-bottom:0.5rem;display:flex;align-items:center}
+    .badge-detail{font-size:11px;color:var(--light);font-family:var(--fm);line-height:1.5}
+
+    /* SHARED SECTION */
+    .section{padding:3rem 2.5rem;max-width:900px;margin:0 auto}
+    .divider{height:1px;background:var(--border);max-width:900px;margin:0 auto 0}
+    .section-eyebrow{font-family:var(--fm);font-size:10px;color:var(--light);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.5rem}
+    .section-heading{font-size:1.25rem;font-weight:500;letter-spacing:-0.01em;margin-bottom:1.75rem}
+
+    /* SKILLS */
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:10px}
+    .skill-block{background:var(--off);border-radius:8px;padding:1rem 1.1rem}
+    .skill-block-label{font-size:10px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--light);margin-bottom:0.6rem}
+    .tags{display:flex;flex-wrap:wrap;gap:5px}
+    .tag{font-size:11px;font-family:var(--fm);background:#fff;border:1px solid var(--border);color:var(--tag-text);padding:3px 8px;border-radius:4px}
+
+    /* PROJECTS */
+    .projects-stack{display:flex;flex-direction:column;gap:1px;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--border)}
+    .project{background:var(--white);padding:1.75rem 2rem;transition:background 0.15s}
+    .project:hover{background:var(--off)}
+    .project-top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:0.5rem}
+    .project-name{font-size:15px;font-weight:500;line-height:1.3}
+    .project-badge{font-family:var(--fm);font-size:10px;padding:3px 9px;border-radius:4px;white-space:nowrap;flex-shrink:0}
+    .badge-live{background:#dcfce7;color:#166534}
+    .badge-sim{background:#dbeafe;color:#1e40af}
+    .badge-soon{background:#f5f0e8;color:#888}
+    .project-desc{font-size:13px;color:var(--mid);line-height:1.65;margin-bottom:0.85rem}
+    .project-tags{display:flex;flex-wrap:wrap;gap:5px}
+    .ptag{font-size:11px;font-family:var(--fm);background:var(--tag-bg);color:var(--tag-text);padding:2px 8px;border-radius:4px}
+    .project-link{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--mid);text-decoration:none;margin-top:0.75rem;font-family:var(--fm);transition:color 0.15s}
+    .project-link:hover{color:var(--dark)}
+
+    /* GALLERY */
+    .gallery-grid{display:flex;flex-direction:column;gap:1.5rem}
+    .gallery-item{border-radius:10px;overflow:hidden;border:1px solid var(--border)}
+    .gallery-img{width:100%;height:260px;object-fit:cover;display:block;background:var(--off)}
+    .gallery-placeholder{width:100%;height:260px;background:var(--off);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem}
+    .gallery-placeholder-icon{font-size:2rem;opacity:0.25}
+    .gallery-placeholder-text{font-size:12px;font-family:var(--fm);color:var(--light)}
+    .gallery-caption{padding:1.1rem 1.25rem;background:var(--white)}
+    .gallery-caption-title{font-size:14px;font-weight:500;margin-bottom:0.25rem}
+    .gallery-caption-desc{font-size:12px;color:var(--mid);line-height:1.6}
+
+    /* COURSEWORK */
+    .course-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+    .course-card{background:var(--off);border-radius:8px;padding:1rem 1.1rem}
+    .course-name{font-size:13px;font-weight:500;margin-bottom:0.2rem}
+    .course-detail{font-size:11px;color:var(--light);font-family:var(--fm)}
+
+    /* LEADERSHIP */
+    .leadership-list{display:flex;flex-direction:column;gap:0}
+    .leadership-item{padding:1.25rem 0;border-bottom:1px solid var(--border)}
+    .leadership-item:last-child{border-bottom:none}
+    .leadership-top{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;margin-bottom:0.2rem}
+    .leadership-role{font-size:14px;font-weight:500}
+    .leadership-date{font-family:var(--fm);font-size:11px;color:var(--light)}
+    .leadership-org{font-size:13px;color:var(--mid);margin-bottom:0.4rem;font-style:italic}
+    .leadership-desc{font-size:13px;color:var(--mid);line-height:1.65}
+
+    /* FOOTER */
+    footer{padding:2rem 2.5rem;text-align:center;font-size:11px;color:var(--light);font-family:var(--fm);border-top:1px solid var(--border)}
+
+    @media(max-width:640px){
+      .header{grid-template-columns:1fr}
+      .header-right{display:none}
+      nav .nav-links{gap:1rem}
+    }
   </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
-  <span class="nav-name">Your Name</span>
+  <span class="nav-name">Yohana Bezuayene</span>
   <div class="nav-links">
-    <a href="#projects">Projects</a>
     <a href="#skills">Skills</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
+    <a href="#projects">Projects</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#coursework">Coursework</a>
+    <a href="#leadership">Leadership</a>
   </div>
 </nav>
 
-<div class="hero">
-  <p class="hero-label">Portfolio — Robotics Engineering</p>
-  <h1>Building robots<br>that <span>move, sense,</span><br>and decide.</h1>
-  <p class="hero-sub">Junior studying Robotics Engineering. Focused on software/controls, hardware integration, and automation. Currently building projects in ROS2 and embedded systems.</p>
-  <div class="hero-links">
-    <a class="btn btn-dark" href="#projects">View projects</a>
-    <a class="btn btn-outline" href="#contact">Get in touch</a>
-    <a class="btn btn-outline" href="#">Resume ↗</a>
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <p class="header-label">Portfolio</p>
+    <h1>Yohana<br><strong>Bezuayene</strong></h1>
+    <p class="header-school">Minnesota State University, Mankato</p>
+    <p class="header-major">B.S. Robotics Engineering &nbsp;·&nbsp; Junior</p>
+    <p class="header-summary">I build things and figure out why they work. Currently developing real hardware and ROS2 simulation projects, and founding the IEEE RAS student chapter at MNSU.</p>
+    <div class="contact-pills">
+      <a class="pill pill-dark" href="#projects">Projects</a>
+      <a class="pill" href="#gallery">Project Gallery</a>
+      <a class="pill" href="resume.pdf" target="_blank">Resume</a>
+      <a class="pill" href="#contact">Contact</a>
+    </div>
   </div>
 </div>
 
 <div class="divider"></div>
 
-<section id="projects">
-  <p class="section-label">Work</p>
-  <p class="section-title">Projects</p>
-  <div class="projects-list">
-
-    <div class="project-card">
-      <div class="project-header">
-        <span class="project-title">Autonomous Line-Following Robot with PID Control</span>
-        <span class="project-status status-active">In progress</span>
-      </div>
-      <p class="project-desc">Wheeled robot that follows a line using IR sensors and a PID controller. Built on Arduino Uno with an L298N dual H-bridge motor driver. Tuning Kp, Ki, Kd gain parameters to minimize deviation at speed.</p>
-      <div class="project-tags">
-        <span class="project-tag">Arduino</span>
-        <span class="project-tag">C++</span>
-        <span class="project-tag">PID Control</span>
-        <span class="project-tag">IR Sensing</span>
-        <span class="project-tag">Hardware</span>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <div class="project-header">
-        <span class="project-title">3-DOF Robot Arm Simulation — ROS2 + Gazebo + MoveIt</span>
-        <span class="project-status status-sim">Simulation</span>
-      </div>
-      <p class="project-desc">Designed a 3-DOF arm in URDF with gripper, simulated in Gazebo with physics, and configured MoveIt for motion planning. Working toward automated pick-and-place using a Python node and inverse kinematics.</p>
-      <div class="project-tags">
-        <span class="project-tag">ROS2</span>
-        <span class="project-tag">Gazebo</span>
-        <span class="project-tag">MoveIt</span>
-        <span class="project-tag">Python</span>
-        <span class="project-tag">URDF</span>
-        <span class="project-tag">Kinematics</span>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <div class="project-header">
-        <span class="project-title">[ Your Next Project ]</span>
-        <span class="project-status" style="background:#f5f0e8;color:#888">Coming soon</span>
-      </div>
-      <p class="project-desc">Add your next project here — Computer Vision Object Tracker, Sensor Fusion, or Automated Sorting System. Each project should include a brief description, tools used, and measurable results.</p>
-      <div class="project-tags">
-        <span class="project-tag">OpenCV</span>
-        <span class="project-tag">Python</span>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<section id="skills">
-  <p class="section-label">Capabilities</p>
-  <p class="section-title">Technical skills</p>
+<!-- SKILLS -->
+<div class="section" id="skills">
+  <p class="section-eyebrow">Capabilities</p>
+  <p class="section-heading">Technical skills</p>
   <div class="skills-grid">
-    <div class="skill-group">
-      <p class="skill-group-label">Languages</p>
-      <div class="skill-tags">
+    <div class="skill-block">
+      <p class="skill-block-label">Languages</p>
+      <div class="tags">
         <span class="tag">Python</span><span class="tag">C/C++</span><span class="tag">MATLAB</span><span class="tag">Bash</span>
       </div>
     </div>
-    <div class="skill-group">
-      <p class="skill-group-label">Robotics</p>
-      <div class="skill-tags">
+    <div class="skill-block">
+      <p class="skill-block-label">Robotics</p>
+      <div class="tags">
         <span class="tag">ROS2</span><span class="tag">Gazebo</span><span class="tag">MoveIt</span><span class="tag">URDF</span>
       </div>
     </div>
-    <div class="skill-group">
-      <p class="skill-group-label">Hardware</p>
-      <div class="skill-tags">
+    <div class="skill-block">
+      <p class="skill-block-label">Hardware</p>
+      <div class="tags">
         <span class="tag">Arduino</span><span class="tag">Raspberry Pi</span><span class="tag">L298N</span><span class="tag">IR Sensors</span>
       </div>
     </div>
-    <div class="skill-group">
-      <p class="skill-group-label">Software</p>
-      <div class="skill-tags">
+    <div class="skill-block">
+      <p class="skill-block-label">Software</p>
+      <div class="tags">
         <span class="tag">OpenCV</span><span class="tag">SolidWorks</span><span class="tag">Git</span><span class="tag">Linux</span>
       </div>
     </div>
-    <div class="skill-group">
-      <p class="skill-group-label">Concepts</p>
-      <div class="skill-tags">
+    <div class="skill-block">
+      <p class="skill-block-label">Concepts</p>
+      <div class="tags">
         <span class="tag">PID Control</span><span class="tag">Kinematics</span><span class="tag">SLAM</span><span class="tag">Sensor Fusion</span>
       </div>
     </div>
-    <div class="skill-group">
-      <p class="skill-group-label">Coursework</p>
-      <div class="skill-tags">
-        <span class="tag">Controls</span><span class="tag">Mechatronics</span><span class="tag">Embedded Sys</span><span class="tag">Dynamics</span>
+    <div class="skill-block">
+      <p class="skill-block-label">Tools</p>
+      <div class="tags">
+        <span class="tag">Simulink</span><span class="tag">VS Code</span><span class="tag">GitHub</span><span class="tag">Ubuntu</span>
       </div>
     </div>
   </div>
-</section>
+</div>
 
 <div class="divider"></div>
 
-<section id="about">
-  <p class="section-label">Background</p>
-  <p class="section-title">About me</p>
-  <div class="about-grid">
-    <p class="about-text">I'm a junior studying Robotics Engineering with a focus on software/controls, hardware integration, and industrial automation. I build hands-on projects to bridge the gap between coursework and real-world engineering.<br><br>Currently seeking summer 2026 internships in robotics, controls, or automation engineering. I'm especially interested in roles where software meets hardware — from embedded systems to motion planning.</p>
-    <div class="about-facts">
-      <div class="fact"><span class="fact-label">Degree</span><span class="fact-value">B.S. Robotics Engineering</span></div>
-      <div class="fact"><span class="fact-label">Year</span><span class="fact-value">Junior (Class of 20XX)</span></div>
-      <div class="fact"><span class="fact-label">Focus</span><span class="fact-value">Controls, Hardware, Automation</span></div>
-      <div class="fact"><span class="fact-label">Status</span><span class="fact-value">Seeking Summer 2026 Internship</span></div>
-      <div class="fact"><span class="fact-label">Location</span><span class="fact-value">[ Your City, State ]</span></div>
+<!-- PROJECTS -->
+<div class="section" id="projects">
+  <p class="section-eyebrow">Experience</p>
+  <p class="section-heading">Projects</p>
+  <div class="projects-stack">
+
+    <div class="project">
+      <div class="project-top">
+        <span class="project-name">Autonomous Line-Following Robot with PID Control</span>
+        <span class="project-badge badge-live">In progress</span>
+      </div>
+      <p class="project-desc">Wheeled robot that follows a line using a 5-channel IR sensor array and a PID controller. Built on Arduino Uno with an L298N dual H-bridge motor driver and a 2WD chassis. Currently tuning Kp, Ki, Kd gain parameters to minimize deviation at speed.</p>
+      <div class="project-tags">
+        <span class="ptag">Arduino</span><span class="ptag">C++</span><span class="ptag">PID Control</span><span class="ptag">IR Sensing</span><span class="ptag">L298N</span><span class="ptag">Hardware</span>
+      </div>
+      <a class="project-link" href="https://github.com/yohiii" target="_blank">View on GitHub &rarr;</a>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <span class="project-name">3-DOF Robot Arm Simulation &mdash; ROS2 + Gazebo + MoveIt</span>
+        <span class="project-badge badge-sim">Simulation</span>
+      </div>
+      <p class="project-desc">Designed a 3-DOF robot arm in URDF with collision geometry, inertial properties, and a two-fingered gripper. Simulated in Gazebo with full physics, configured MoveIt for motion planning, and working toward automated pick-and-place via a Python node using inverse kinematics.</p>
+      <div class="project-tags">
+        <span class="ptag">ROS2</span><span class="ptag">Gazebo</span><span class="ptag">MoveIt</span><span class="ptag">Python</span><span class="ptag">URDF</span><span class="ptag">Kinematics</span><span class="ptag">Linux</span>
+      </div>
+      <a class="project-link" href="https://github.com/yohiii" target="_blank">View on GitHub &rarr;</a>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <span class="project-name">[ Next Project &mdash; Add When Ready ]</span>
+        <span class="project-badge badge-soon">Coming soon</span>
+      </div>
+      <p class="project-desc">Replace this with your next project &mdash; Computer Vision Object Tracker, Sensor Fusion, or Automated Sorting System. Include a description, tools used, and a measurable result.</p>
+      <div class="project-tags">
+        <span class="ptag">OpenCV</span><span class="ptag">Python</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- GALLERY -->
+<div class="section" id="gallery">
+  <p class="section-eyebrow">Visual</p>
+  <p class="section-heading">Project gallery</p>
+  <div class="gallery-grid">
+
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <span class="gallery-placeholder-icon">&#9654;</span>
+        <span class="gallery-placeholder-text">Upload a photo or video of your line-following robot here</span>
+      </div>
+      <div class="gallery-caption">
+        <p class="gallery-caption-title">Line-Following Robot — Hardware Build</p>
+        <p class="gallery-caption-desc">Arduino Uno + L298N + 5-channel IR sensor array mounted on a 2WD chassis. PID controller tuned for stable line tracking.</p>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <span class="gallery-placeholder-icon">&#9654;</span>
+        <span class="gallery-placeholder-text">Upload a screenshot or screen recording of your Gazebo simulation here</span>
+      </div>
+      <div class="gallery-caption">
+        <p class="gallery-caption-title">3-DOF Robot Arm — Gazebo Simulation</p>
+        <p class="gallery-caption-desc">URDF-defined arm with custom gripper simulated in Gazebo. MoveIt configured for motion planning and pick-and-place sequencing.</p>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <span class="gallery-placeholder-icon">+</span>
+        <span class="gallery-placeholder-text">Add your next project photo here</span>
+      </div>
+      <div class="gallery-caption">
+        <p class="gallery-caption-title">[ Your Next Project ]</p>
+        <p class="gallery-caption-desc">Add a photo, screenshot, or demo video when your next project is ready.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- COURSEWORK -->
+<div class="section" id="coursework">
+  <p class="section-eyebrow">Academic</p>
+  <p class="section-heading">Relevant coursework</p>
+  <div class="course-grid">
+    <div class="course-card">
+      <p class="course-name">Control Systems</p>
+      <p class="course-detail">Feedback control, PID, stability analysis</p>
+    </div>
+    <div class="course-card">
+      <p class="course-name">Embedded Systems</p>
+      <p class="course-detail">Microcontrollers, real-time programming, I/O</p>
+    </div>
+    <div class="course-card">
+      <p class="course-name">Dynamics</p>
+      <p class="course-detail">Rigid body motion, Newton-Euler equations</p>
+    </div>
+    <div class="course-card">
+      <p class="course-name">Robotics Programming</p>
+      <p class="course-detail">ROS, motion planning, sensor integration</p>
+    </div>
+    <div class="course-card">
+      <p class="course-name">[ Add Course ]</p>
+      <p class="course-detail">Replace with additional relevant classes</p>
+    </div>
+    <div class="course-card">
+      <p class="course-name">[ Add Course ]</p>
+      <p class="course-detail">Replace with additional relevant classes</p>
     </div>
   </div>
-</section>
+</div>
 
 <div class="divider"></div>
 
-<section id="contact">
-  <p class="section-label">Connect</p>
-  <p class="section-title">Get in touch</p>
-  <div class="contact-grid">
-    <a class="contact-card" href="mailto:you@email.com">
-      <p class="contact-card-label">Email</p>
-      <p class="contact-card-value">you@email.com</p>
-    </a>
-    <a class="contact-card" href="https://linkedin.com/in/yourname" target="_blank">
-      <p class="contact-card-label">LinkedIn</p>
-      <p class="contact-card-value">linkedin.com/in/yourname</p>
-    </a>
-    <a class="contact-card" href="https://github.com/yourname" target="_blank">
-      <p class="contact-card-label">GitHub</p>
-      <p class="contact-card-value">github.com/yourname</p>
-    </a>
-    <a class="contact-card" href="#">
-      <p class="contact-card-label">Resume</p>
-      <p class="contact-card-value">Download PDF ↗</p>
-    </a>
+<!-- LEADERSHIP -->
+<div class="section" id="leadership">
+  <p class="section-eyebrow">Involvement</p>
+  <p class="section-heading">Leadership &amp; activities</p>
+  <div class="leadership-list">
+
+    <div class="leadership-item">
+      <div class="leadership-top">
+        <span class="leadership-role">Founding Chair</span>
+        <span class="leadership-date">20XX &ndash; Present</span>
+      </div>
+      <p class="leadership-org">IEEE Robotics &amp; Automation Society (RAS) &mdash; MNSU Student Branch Chapter</p>
+      <p class="leadership-desc">Founded and currently lead the first IEEE RAS student branch chapter at Minnesota State University, Mankato. Responsible for establishing the chapter, recruiting members, organizing technical workshops, and building relationships with faculty and industry professionals.</p>
+    </div>
+
   </div>
-</section>
+</div>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<div class="section" id="contact">
+  <p class="section-eyebrow">Connect</p>
+  <p class="section-heading">Get in touch</p>
+  <div class="contact-pills" style="gap:10px">
+    <a class="pill pill-dark" href="mailto:you@email.com">yohana.bezuayene@mnsu.edu</a>
+    <a class="pill" href="https://linkedin.com/in/yohanabezuayene" target="_blank">LinkedIn</a>
+    <a class="pill" href="https://github.com/yohiii" target="_blank">GitHub</a>
+    <a class="pill" href="resume.pdf" target="_blank">Download Resume</a>
+  </div>
+</div>
 
 <footer>
-  Built with HTML/CSS · [ Your Name ] · Robotics Engineering
+  Yohana Bezuayene &nbsp;&middot;&nbsp; Robotics Engineering &nbsp;&middot;&nbsp; Minnesota State University, Mankato
 </footer>
 
 </body>
